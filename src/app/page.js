@@ -7,22 +7,13 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Navigation } from "@/components/Navigation";
+
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <h1 className="text-4xl font-bold">
-          Welcome to <span className="text-primary">Shadcn</span>
-        </h1>
-        <Button>Click me</Button>
-        <Card>
-          <CardHeader>
-            <CardTitle>Card Title</CardTitle>
-            <CardDescription>Card Description</CardDescription>
-          </CardHeader>
-        </Card>
-        <Input />
-      </main>
-    </div>
+    <main className="flex flex-col gap-8 row-start-2 items-center w-full lg:max-w-3xl mx-auto pt-8">
+      <Navigation />
+      <div className="bg-red-500 w-full h-96">body</div>
+    </main>
   );
 }
