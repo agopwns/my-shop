@@ -2,9 +2,21 @@
 
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
 
 export function KakaoLoginButton() {
+  const [user, setUser] = useState(null);
   const supabase = createClientComponentClient();
+
+  useEffect(() => {
+    const getUser = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      setUser(user);
+    };
+    getUser();
+  }, []);
 
   const handleKakaoLogin = async () => {
     try {
@@ -20,6 +32,8 @@ export function KakaoLoginButton() {
       console.error("카카오 로그인 에러:", error.message);
     }
   };
+
+  if (user) return null;
 
   return (
     <Button

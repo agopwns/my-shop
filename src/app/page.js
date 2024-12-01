@@ -14,14 +14,18 @@ import { Markdown } from "@/components/Markdown";
 import { courseContent } from "@/constants/courseContent";
 import { HeroSection } from "@/components/HeroSection";
 import { KakaoLoginButton } from "@/components/KakaoLoginButton";
+import { UserProfile } from "@/components/UserProfile";
 
 export default function Home() {
   return (
     <main className="flex flex-col gap-2 lg:gap-8 row-start-2 items-center w-full lg:max-w-3xl mx-auto lg:pt-8 px-2 pt-2">
-      {/* 카카오 로그인 버튼 */}
-      <div className="flex justify-between w-full">
+      {/* 상단 헤더 영역 */}
+      <div className="flex justify-between w-full items-center">
         <h1 className="text-2xl font-bold">My Supa Code</h1>
-        <KakaoLoginButton />
+        <div className="flex gap-4">
+          <UserProfile />
+          <KakaoLoginButton />
+        </div>
       </div>
 
       <div className="sticky top-0 z-50 w-full bg-background">
