@@ -7,6 +7,7 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { COURSE_PRICE } from "@/constants/pricing";
 
 export function HeroSection() {
   return (
@@ -34,13 +35,15 @@ export function HeroSection() {
         <div className="flex flex-col items-center gap-1">
           <div className="flex items-center gap-2">
             <Badge variant="destructive" className="text-lg">
-              34% OFF
+              {COURSE_PRICE.discountPercentage}% OFF
             </Badge>
             <span className="text-2xl line-through text-gray-400">
-              150,000원
+              {COURSE_PRICE.original.toLocaleString()}원
             </span>
           </div>
-          <div className="text-3xl font-bold">99,000원</div>
+          <div className="text-3xl font-bold">
+            {COURSE_PRICE.discounted.toLocaleString()}원
+          </div>
         </div>
         <Button size="lg" className="bg-primary hover:bg-primary/90">
           자세히 보기

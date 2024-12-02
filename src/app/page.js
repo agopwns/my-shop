@@ -15,6 +15,8 @@ import { courseContent } from "@/constants/courseContent";
 import { HeroSection } from "@/components/HeroSection";
 import { KakaoLoginButton } from "@/components/KakaoLoginButton";
 import { UserProfile } from "@/components/UserProfile";
+import { PurchaseButton } from "@/components/PurchaseButton";
+import { COURSE_PRICE } from "@/constants/pricing";
 
 export default function Home() {
   return (
@@ -36,9 +38,10 @@ export default function Home() {
       <HeroSection />
 
       {/* 상세 내용 섹션 */}
-      <Card className="w-full p-6">
+      <Card className="w-full px-6 pb-36">
         <Markdown content={courseContent} />
       </Card>
+      <PurchaseButton courseId="course_1" price={COURSE_PRICE.discounted} />
     </main>
   );
 }
