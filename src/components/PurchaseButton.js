@@ -2,33 +2,29 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import * as PortOne from "@portone/browser-sdk/v2";
+import { COURSE_PRICE } from "@/constants/pricing";
 
 export function PurchaseButton({ courseId, price }) {
   const [isPurchasing, setIsPurchasing] = useState(false);
-  const supabase = createClientComponentClient();
 
   const handlePurchase = async () => {
     try {
       setIsPurchasing(true);
 
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-
-      if (!user) {
-        alert("로그인이 필요합니다.");
-        return;
-      }
-
-      const { data, error } = await supabase.from("purchases").insert([
-        {
-          user_id: user.id,
-          course_id: courseId,
-          amount: price,
-          status: "completed",
-        },
-      ]);
+      // 결제 요청
+      const response = await PortOne.requestPayment({
+        // Store ID 설정
+        storeId: process.env.NEXT_PUBLIC_PORTONE_STORE_ID,
+        // 채널 키 설정
+        channelKey: process.env.NEXT_PUBLIC_PORTONE_CHANNEL_KEY,
+        paymentId: `payment-${crypto.randomUUID()}`,
+        orderName: "Supa 강의",
+        totalAmount: price,
+        currency: "CURRENCY_KRW",
+        payMethod: "CARD",
+        redirectUrl: `${window.location.origin}/api/payment/complete`,
+      });
 
       if (error) throw error;
 

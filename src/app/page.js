@@ -17,7 +17,6 @@ import { KakaoLoginButton } from "@/components/KakaoLoginButton";
 import { UserProfile } from "@/components/UserProfile";
 import { PurchaseButton } from "@/components/PurchaseButton";
 import { COURSE_PRICE } from "@/constants/pricing";
-
 export default function Home() {
   return (
     <main className="flex flex-col gap-2 lg:gap-8 row-start-2 items-center w-full lg:max-w-3xl mx-auto lg:pt-8 px-2 pt-2">
