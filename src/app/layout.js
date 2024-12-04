@@ -1,5 +1,8 @@
 import localFont from "next/font/local";
 import "./globals.css";
+import { Navigation } from "@/components/Navigation";
+import { KakaoLoginButton } from "@/components/KakaoLoginButton";
+import { UserProfile } from "@/components/UserProfile";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -23,6 +26,18 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {/* 상단 헤더 영역 */}
+        <div className="flex justify-between w-full items-center p-2">
+          <h1 className="text-2xl font-bold">My Supa Code</h1>
+          <div className="flex gap-4">
+            <UserProfile />
+            <KakaoLoginButton />
+          </div>
+        </div>
+
+        <div className="sticky top-0 z-50 w-full bg-background">
+          <Navigation />
+        </div>
         {children}
       </body>
     </html>
